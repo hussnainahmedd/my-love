@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forever Yours 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to top, #ff9a9e, #fad0c4);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 20px #ff0080, 0 0 30px #ff4da6; }
+    }
+
+    .quote {
+      font-size: 1.4rem;
+      margin-top: 20px;
+      width: 80%;
+      max-width: 500px;
+      transition: all 0.5s ease-in-out;
+      opacity: 0.9;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 12px 24px;
+      background-color: #ff007f;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff3385;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ff4da6;
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: fall 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10%;
+        opacity: 1;
+        transform: translateX(0) rotate(45deg);
+      }
+      100% {
+        top: 110%;
+        opacity: 0;
+        transform: translateX(100px) rotate(45deg);
+      }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>You're the reason I smile 💖</h1>
+  <p class="quote" id="loveQuote">Every day with you is my favorite day.</p>
+  <button onclick="showNextQuote()">Tell Me More 💬</button>
+
+  <!-- Background Hearts -->
+  <div class="hearts"></div>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    // Floating Hearts Generator
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      document.querySelector(".hearts").appendChild(heart);
+    }
+
+    // Quotes Array
+    const quotes = [
+      "You are the sunshine that lights my world ☀️",
+      "I fall in love with you more every day 💘",
+      "Your smile is my favorite view 😍",
+      "You're my first thought when I wake up 💭",
+      "You’re not just my love, you’re my life 💗",
+      "My heart beats for you, and only you ❤️",
+      "Forever isn’t long enough with you 💍",
+      "I love you more than words can show 💌"
+    ];
+
+    let quoteIndex = 0;
+    function showNextQuote() {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById("loveQuote").textContent = quotes[quoteIndex];
+    }
+  </script>
+</body>
+</html>
