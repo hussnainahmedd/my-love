@@ -2,63 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Forever Yours 💖</title>
+  <title>Will You Marry Me? 💍</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      height: 100vh;
-      background: linear-gradient(to top, #ff9a9e, #fad0c4);
-      overflow: hidden;
+      margin: 0;
+      background: radial-gradient(circle at center, #ff9a9e, #fad0c4);
       font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      height: 100vh;
       text-align: center;
       color: white;
-      position: relative;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       animation: glow 2s ease-in-out infinite alternate;
+      margin-bottom: 20px;
     }
 
     @keyframes glow {
       from { text-shadow: 0 0 10px #fff; }
-      to { text-shadow: 0 0 20px #ff0080, 0 0 30px #ff4da6; }
+      to { text-shadow: 0 0 20px #ff007f, 0 0 30px #ff4da6; }
     }
 
-    .quote {
-      font-size: 1.4rem;
-      margin-top: 20px;
-      width: 80%;
-      max-width: 500px;
-      transition: all 0.5s ease-in-out;
-      opacity: 0.9;
-    }
-
-    button {
-      margin-top: 2rem;
-      padding: 12px 24px;
+    .btn {
       background-color: #ff007f;
       border: none;
-      border-radius: 30px;
+      padding: 15px 30px;
+      border-radius: 40px;
+      font-size: 1.3rem;
       color: white;
-      font-size: 1rem;
+      box-shadow: 0 0 15px #ff3385;
       cursor: pointer;
-      box-shadow: 0 0 10px #ff3385;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
 
-    button:hover {
-      transform: scale(1.1);
+    .btn:hover {
       background-color: #ff4da6;
+      transform: scale(1.1);
+    }
+
+    .ring {
+      font-size: 5rem;
+      display: none;
+      margin-top: 30px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
     }
 
     .hearts {
@@ -108,55 +105,50 @@
       100% {
         top: 110%;
         opacity: 0;
-        transform: translateX(100px) rotate(45deg);
+        transform: translateX(50px) rotate(45deg);
       }
     }
 
-    audio {
+    #message {
+      margin-top: 20px;
+      font-size: 1.5rem;
       display: none;
     }
   </style>
 </head>
 <body>
-  <h1>You're the reason I smile 💖</h1>
-  <p class="quote" id="loveQuote">Every day with you is my favorite day.</p>
-  <button onclick="showNextQuote()">Tell Me More 💬</button>
 
-  <!-- Background Hearts -->
+  <h1>Will You Marry Me? 💍</h1>
+  <button class="btn" onclick="propose()">Yes, Forever 💞</button>
+  <div class="ring" id="ring">💍</div>
+  <p id="message">She said YES! 💘 I’m the luckiest person alive!</p>
+
+  <!-- Falling Hearts -->
   <div class="hearts"></div>
 
-  <!-- Background Music -->
+  <!-- Optional Love Music -->
   <audio autoplay loop>
     <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
   </audio>
 
+  <!-- JavaScript -->
   <script>
-    // Floating Hearts Generator
+    // Floating hearts
     for (let i = 0; i < 40; i++) {
       const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      heart.style.animationDuration = 3 + Math.random() * 3 + "s";
       document.querySelector(".hearts").appendChild(heart);
     }
 
-    // Quotes Array
-    const quotes = [
-      "You are the sunshine that lights my world ☀️",
-      "I fall in love with you more every day 💘",
-      "Your smile is my favorite view 😍",
-      "You're my first thought when I wake up 💭",
-      "You’re not just my love, you’re my life 💗",
-      "My heart beats for you, and only you ❤️",
-      "Forever isn’t long enough with you 💍",
-      "I love you more than words can show 💌"
-    ];
-
-    let quoteIndex = 0;
-    function showNextQuote() {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      document.getElementById("loveQuote").textContent = quotes[quoteIndex];
+    // Proposal interaction
+    function propose() {
+      document.getElementById("ring").style.display = "block";
+      document.getElementById("message").style.display = "block";
+      alert("💖 She said YES! 💖");
     }
   </script>
+
 </body>
 </html>
